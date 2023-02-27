@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "55f18ecb-2745-4dda-b6b8-8e366bacef70",
+		"name": "Nest Sandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1076404"
+	},
+	"item": [
+		{
+			"name": "Setpoint Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/enterprises/{{project-id}}/devices/{{device-id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"enterprises",
+						"{{project-id}}",
+						"devices",
+						"{{device-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Temp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"command\" : \"sdm.devices.commands.ThermostatTemperatureSetpoint.SetCool\",\n  \"params\" : {\n    \"coolCelsius\" : 22.7778\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/enterprises/{{project-id}}/devices/{{device-id}}:executeCommand",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"enterprises",
+						"{{project-id}}",
+						"devices",
+						"{{device-id}}:executeCommand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/enterprises/{{project-id}}/devices/",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"enterprises",
+						"{{project-id}}",
+						"devices",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Structures",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/enterprises/{{project-id}}/structures/",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"enterprises",
+						"{{project-id}}",
+						"structures",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "tokenType",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "scope",
+				"value": "https://www.googleapis.com/auth/sdm.service",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://accounts.google.com/o/oauth2/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://accounts.google.com/o/oauth2/auth",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://www.getpostman.com/oauth2/callback",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client-secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client-id}}",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "google-auth-token",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "client-id",
+			"value": ""
+		},
+		{
+			"key": "client-secret",
+			"value": ""
+		},
+		{
+			"key": "device-id",
+			"value": ""
+		},
+		{
+			"key": "base-url",
+			"value": ""
+		},
+		{
+			"key": "project-id",
+			"value": ""
+		}
+	]
+}
