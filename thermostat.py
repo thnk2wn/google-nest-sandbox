@@ -82,8 +82,6 @@ class Thermostat:
       }
     }
 
-    #body = json.dumps(data)
+    # https://googleapis.github.io/google-api-python-client/docs/dyn/smartdevicemanagement_v1.enterprises.devices.html#executeCommand
     request = self.service.enterprises().devices().executeCommand(name=self.deviceName, body=data)
     response = self.__execute(request)
-
-  # https://googleapis.github.io/google-api-python-client/docs/dyn/smartdevicemanagement_v1.enterprises.devices.html#executeCommand
