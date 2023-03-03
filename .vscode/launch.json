@@ -12,6 +12,13 @@
             "args" : []
         },
         {
+            "name": "set heat",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args" : ["temp", "76", "--mode", "heat"]
+        },
+        {
             "name": "Current File",
             "type": "python",
             "request": "launch",
