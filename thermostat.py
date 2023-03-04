@@ -17,6 +17,7 @@ class Thermostat:
     self.debug = debug
     credentials = get_credentials_installed()
     self.service = build(serviceName='smartdevicemanagement', version='v1', credentials=credentials)
+    atexit.register(self.cleanup)
 
   def cleanup(self):
     self.service.close()
