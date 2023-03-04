@@ -1,4 +1,5 @@
 from enum import Enum
+import atexit
 import json
 
 from credentials import get_credentials_installed
@@ -16,6 +17,10 @@ class Thermostat:
     self.debug = debug
     credentials = get_credentials_installed()
     self.service = build(serviceName='smartdevicemanagement', version='v1', credentials=credentials)
+
+  def cleanup(self):
+    self.service.close()
+    print('Service closed')
 
   def __execute(self, request):
     try:
@@ -74,9 +79,27 @@ class Thermostat:
           f'temp is {round(self.tempF, 0)} °F, ' +
           f'setpoint is {round(self.setpointF, 0)} °F')
 
+  def set_mode(self, mode: ThermostatMode):
+    # https://developers.google.com/nest/device-access/traits/device/thermostat-mode
+    data = {
+      "command": "sdm.devices.commands.ThermostatMode.SetMode",
+      "params": {
+        "mode": mode.name.upper()
+      }
+    }
+
+    request = self.service.enterprises().devices().executeCommand(name=self.deviceName, body=data)
+    response = self.__execute(request)
+
+    print(f'Nest set to mode {mode.name}')
+
   def set_temp(self, mode: ThermostatMode, tempF: float):
+    # Ensure / change thermostat mode first
+    self.set_mode(mode)
+
     tempC = fahrenheit_to_celsius(tempF)
 
+    # https://googleapis.github.io/google-api-python-client/docs/dyn/smartdevicemanagement_v1.enterprises.devices.html#executeCommand
     data = {
       "command": f"sdm.devices.commands.ThermostatTemperatureSetpoint.Set{mode.name}",
       "params": {
@@ -84,8 +107,7 @@ class Thermostat:
       }
     }
 
-    # https://googleapis.github.io/google-api-python-client/docs/dyn/smartdevicemanagement_v1.enterprises.devices.html#executeCommand
     request = self.service.enterprises().devices().executeCommand(name=self.deviceName, body=data)
     response = self.__execute(request)
 
-    print(f'Nest set to mode {mode.name}, temp {round(tempF, 0)} °F ({round(tempC, 0)} °C)')
+    print(f'Nest set to temp {round(tempF, 0)} °F ({round(tempC, 0)} °C) for mode {mode.name}')
