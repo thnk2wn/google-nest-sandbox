@@ -1,8 +1,7 @@
-
-from thermostat import Thermostat, ThermostatMode
-from env import get_project_id
-
 import click
+
+from env import get_project_id
+from thermostat import Thermostat, ThermostatMode
 
 @click.group()
 @click.option('--debug/--no-debug', default=False)

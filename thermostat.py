@@ -1,11 +1,11 @@
-from enum import Enum
 import atexit
 import json
 
 from credentials import get_credentials_installed
+from enum import Enum
 from googleapiclient.discovery import build
-from urllib.error import HTTPError
 from temperature import celsius_to_fahrenheit, fahrenheit_to_celsius
+from urllib.error import HTTPError
 
 ThermostatMode = Enum('ThermostatMode', ['Cool', 'Heat'])
 
@@ -91,7 +91,6 @@ class Thermostat:
 
     request = self.service.enterprises().devices().executeCommand(name=self.deviceName, body=data)
     response = self.__execute(request)
-
     print(f'Nest set to mode {mode.name}')
 
   def set_temp(self, mode: ThermostatMode, tempF: float):
