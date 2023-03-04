@@ -16,7 +16,14 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
-            "args" : ["temp", "76", "--mode", "heat"]
+            "args" : ["temp", "76", "--mode", "Heat"]
+        },
+        {
+            "name": "set cool",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args" : ["temp", "75", "--mode", "Cool"]
         },
         {
             "name": "Current File",

@@ -70,7 +70,9 @@ class Thermostat:
     self.setpointC = setpointTrait[key]
     self.setpointF = celsius_to_fahrenheit(self.setpointC)
 
-    print(f'Nest mode is {self.mode}, temp is {self.tempF} °F, setpoint is {self.setpointF} °F')
+    print(f'Nest mode is {self.mode}, ' +
+          f'temp is {round(self.tempF, 0)} °F, ' +
+          f'setpoint is {round(self.setpointF, 0)} °F')
 
   def set_temp(self, mode: ThermostatMode, tempF: float):
     tempC = fahrenheit_to_celsius(tempF)
@@ -85,3 +87,5 @@ class Thermostat:
     # https://googleapis.github.io/google-api-python-client/docs/dyn/smartdevicemanagement_v1.enterprises.devices.html#executeCommand
     request = self.service.enterprises().devices().executeCommand(name=self.deviceName, body=data)
     response = self.__execute(request)
+
+    print(f'Nest set to mode {mode.name}, temp {round(tempF, 0)} °F ({round(tempC, 0)} °C)')
