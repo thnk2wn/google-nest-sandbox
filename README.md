@@ -11,3 +11,5 @@ These dependencies were installed with `pip3 install`. See also [requirements.tx
 - [google-api-python-client](https://github.com/googleapis/google-api-python-client/)
 - [google-auth](https://github.com/googleapis/google-auth-library-python)
 - [google-auth-oauthlib](https://github.com/googleapis/google-auth-library-python-oauthlib)
+
+See the post [Trying Google Nest API with Postman and Python](https://geoffhudik.com/tech/2023/03/04/trying-google-nest-api-with-postman-and-python/) for more details including setup and running.
